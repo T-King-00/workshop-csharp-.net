@@ -5,15 +5,33 @@ using System.Text;
 
 public class Hangman
 {
-    int numberOfGuesses;
+    private int numberOfGuesses;
     public int remainingGuesses;
     public StringBuilder guessedWord;
-
+    private HashSet<char> guessedChars;
+    private string randomWord;
+    public char lastInputChar;
+    
+    //overloading constructor
     public Hangman(int numberOfGuesses)
     {
         this.numberOfGuesses = numberOfGuesses;
         this.remainingGuesses = numberOfGuesses;
         this.guessedWord = new StringBuilder();
+        guessedChars = new HashSet<char>();
+        this.randomWord=this.FetchRandomWord();
+    }
+    public Hangman(string randomWord,int numberOfGuesses)
+    {
+        this.numberOfGuesses = numberOfGuesses;
+        this.remainingGuesses = numberOfGuesses;
+        this.guessedWord = new StringBuilder();
+        guessedChars = new HashSet<char>();
+        this.randomWord = randomWord;
+        Console.WriteLine("Computer is thinking of a new random word. Please wait..");
+        this.guessedWord.Append(new string('-',this.randomWord.Length));
+        Console.WriteLine("Random word is chosen");
+
     }
     
 
@@ -21,46 +39,52 @@ public class Hangman
     {
         Hangman game = new Hangman(10);
         
-        game.startGame();
-        
-        Console.WriteLine("Computer is thinking of a new random word. Please wait..");
-        string random_word= game.fetchRandomWord();
-        Console.WriteLine("Random word is chosen");
-        
-        Console.WriteLine("You have 10 guesses");
-
-        
-        StringBuilder inputChars= new StringBuilder();
-
+        game.StartGame();
         
         bool solved = true;
         while (true)
         {
-            char inputChar=game.getInputChar();
-            inputChars.Append(inputChar);
-
-            bool resGuess=game.TryAGuess(random_word,inputChar);
-            game.UpdateCountRemainingGuesses(resGuess);
+            if(game.checkSolved())
+                break;
+            game.GetUserInputCharFromConsole();
+          
             
-            
+            game.TryAGuess();
             if (game.remainingGuesses == 0)
             {
                 solved = false;
                 break;
             }
 
-
         }
-        game.result(solved);
+        game.Result(solved);
+        
+    }
 
-       
+    private bool checkSolved()
+    {
+        if (guessedWord.ToString() == randomWord.ToString())
+        {
+            Console.WriteLine("You won the game :) ");
+            Result(true);
+            return true;
+        }
+        return false;
+    }
 
-
-
-
-
-
-
+    public bool CheckPreviousInputs(char inputChar)
+    {
+        if (this.guessedChars.Contains(inputChar))
+        {
+            Console.WriteLine("\nYou have already guessed this letter");
+            return true;
+        }
+        else
+        {
+            this.guessedChars.Add(inputChar);
+            return false;
+        }
+        
     }
 
     public int UpdateCountRemainingGuesses(bool resGuess)
@@ -69,17 +93,18 @@ public class Hangman
         {
             remainingGuesses--;
         }
-        
+
+      
         return remainingGuesses;
     }
-
-  
-
-    public void result(bool solved)
+    
+    public void Result(bool solved)
     {
+        Console.WriteLine("Entered chars are "+ string.Join(",",this.guessedChars));
         if (!solved)
         {
             Console.WriteLine("You lost the game :( ");
+            Console.WriteLine("The word was: "+ this.randomWord);
         }
         else
         {
@@ -87,36 +112,76 @@ public class Hangman
         }
         
     }
-
-    public char getInputChar()
+    
+    public bool TryAGuess( )
     {
+        if (guessedWord.ToString() != randomWord.ToString() && checkRemaingingGuessesCount() == "lost")
+        {
+            return false;
+        }
+        
+        Console.WriteLine("\nPrevious guesses: "+ string.Join(",",guessedChars));
+        Console.WriteLine($"* You have {remainingGuesses} guesses left ;; Guess a new letter");
+        
+        //GetUserInputCharFromConsole();
+  
+        if(CheckPreviousInputs(lastInputChar))
+            return false;
+        
+        
+        
+        int index = this.randomWord.IndexOf(lastInputChar);
+        
+        if (index == -1)
+        {
+            Console.WriteLine("\nYou guessed wrong");
+            UpdateCountRemainingGuesses(false);
+            Console.WriteLine("################################");
+
+            return false;
+        }
+        else
+        {
+            Console.WriteLine("\nYou guessed right");
+            guessedWord[index] = (char) lastInputChar;
+            Console.WriteLine(guessedWord); 
+            Console.WriteLine("################################");
+            return true;
+        }
+
+    }
+
+    private string checkRemaingingGuessesCount()
+    {
+        if (remainingGuesses == 0)
+        {
+            Console.WriteLine("You lost the game :( ");
+            Console.WriteLine("The word was: "+ this.randomWord);
+            return "lost";
+        }
+
+        return "";
+    }
+
+    //for testing purpose , separation of concerns
+    public void SetInputChar(char inputChar)
+    {
+        lastInputChar = inputChar;
+        
+    }
+    public void GetUserInputCharFromConsole()
+    {
+        Console.WriteLine("Previous guesses: "+ string.Join(",",guessedChars));
         Console.WriteLine("Guess a letter:");
         char inputChar = Console.ReadKey().KeyChar;
-        return inputChar;
+        SetInputChar(inputChar);
     }
 
-  
+    private string FetchRandomWord()
+    {
+        Console.WriteLine("Computer is thinking of a new random word. Please wait..");
 
-    public bool TryAGuess(string randomWord,char inputChar)
-    {
-        
-        int index = randomWord.IndexOf(inputChar);
-            
-            if (index == -1)
-            {
-                Console.WriteLine("\nYou guessed wrong");
-                return false;
-            }
-            else
-            {
-                Console.WriteLine("\nYou guessed right");
-                guessedWord[index] = inputChar;
-                Console.WriteLine(guessedWord);
-                return true;
-            }
-    }
-   private string fetchRandomWord()
-    {
+        guessedWord=new StringBuilder();
         Thread.Sleep(1000);
         string[] secretWords = {
             "computer",
@@ -132,12 +197,16 @@ public class Hangman
         };
         string randomWord = secretWords[new Random().Next(secretWords.Length)];
         this.guessedWord.Append(new string('-',randomWord.Length));
+        
+        Console.WriteLine("Random word is chosen");
         return randomWord;
     }
-    private void startGame()
+    
+    private void StartGame()
     {
         Console.WriteLine("  \t\t Welcome To Hangman Game ");
         Console.WriteLine("--------------------------------");
+
     }
  
 

@@ -4,37 +4,39 @@ using NUnit.Framework;
 
 public class Tests
 {
+    private Hangman game;
     [SetUp]
     public void Setup()
     {
+         game = new Hangman("development",3);
     }
+
 
     [Test]
-    public void Test1()
+    public void TryDifferentLetters_whenLetttersareright_returnsTrue()
     {
-        int numberOfGuesses = 3;
-        Hangman Game = new Hangman(numberOfGuesses);
-        Game.guessedWord.Append(new string('-',"air".Length));
-        bool res=Game.TryAGuess("air",'a');
+        game.SetInputChar('d');
+        bool res = game.TryAGuess();
         Assert.That(res);
-        Game.UpdateCountRemainingGuesses(res);
-        Console.WriteLine("remaining guesses:"+Game.remainingGuesses);
-        
-        
-        res=Game.TryAGuess("air",'i');
-        Assert.That(res==true);
-        Game.UpdateCountRemainingGuesses(res);
-        Console.WriteLine("remaining guesses:"+Game.remainingGuesses);
 
-        res=Game.TryAGuess("air",'f');
-        Assert.That(res==true);
-        Game.UpdateCountRemainingGuesses(res);
-        Console.WriteLine("remaining guesses:"+Game.remainingGuesses);
 
+        game.SetInputChar('f');
+        res = game.TryAGuess();
+        Assert.That(res.Equals(false));
+
+        game.SetInputChar('g');
+        res = game.TryAGuess();
+        Assert.That(res.Equals(false));
         
-     
-
+        game.SetInputChar('x');
+        res = game.TryAGuess();
+        Assert.That(res.Equals(false));
+        
+        game.SetInputChar('z');
+        res = game.TryAGuess();
+        Assert.That(res.Equals(false));
     }
-    
-    
+
+
+
 }
