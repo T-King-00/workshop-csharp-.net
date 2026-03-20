@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Week11.Dataflow")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+212e6370271fc6bc25e05a144fe55f06a66c8ebe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0db8ca94cc137c38fbf8870b7405566c274b182b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Week11.Dataflow")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Week11.Dataflow")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
