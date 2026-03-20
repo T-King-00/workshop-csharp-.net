@@ -8,35 +8,35 @@ namespace Week11.Dataflow;
 
 public partial class HangMan
 {
-    private int numberOfGuesses;
+    private int _numberOfGuesses;
     public int RemainingGuesses { get; set; }
     
-    private StringBuilder GuessedWordSoFar;
-    private HashSet<char> UserInputChars;
-    private string RandomWord;
-    private char lastInputChar;
+    private StringBuilder _guessedWordSoFar;
+    private HashSet<char> _userInputChars;
+    private string _randomWord;
+    private char _lastInputChar;
     public bool LooseFlag;
     
     //overloading constructor
     
     private HangMan(int numberOfGuesses)
     {
-        this.numberOfGuesses = numberOfGuesses;
+        this._numberOfGuesses = numberOfGuesses;
         this.RemainingGuesses = numberOfGuesses;
-        this.GuessedWordSoFar = new StringBuilder();
-        UserInputChars = new HashSet<char>();
-        this.RandomWord=this.FetchRandomWord();
+        this._guessedWordSoFar = new StringBuilder();
+        _userInputChars = new HashSet<char>();
+        this._randomWord=this.FetchRandomWord();
         LooseFlag=false;
     }
    
     private HangMan(string randomWord,int numberOfGuesses)
     {
-        this.numberOfGuesses = numberOfGuesses;
+        this._numberOfGuesses = numberOfGuesses;
         this.RemainingGuesses = numberOfGuesses;
-        this.GuessedWordSoFar = new StringBuilder();
-        UserInputChars = new HashSet<char>();
-        this.RandomWord = randomWord;
-        this.GuessedWordSoFar.Append(new string('-',this.RandomWord.Length));
+        this._guessedWordSoFar = new StringBuilder();
+        _userInputChars = new HashSet<char>();
+        this._randomWord = randomWord;
+        this._guessedWordSoFar.Append(new string('-',this._randomWord.Length));
         LooseFlag=false;
 
     }
@@ -56,7 +56,7 @@ public partial class HangMan
 
     public bool CheckSolved()
     {
-        if (string.Equals(this.GuessedWordSoFar.ToString(),this.RandomWord,StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(this._guessedWordSoFar.ToString(),this._randomWord,StringComparison.OrdinalIgnoreCase))
         {
             return true;
         }
@@ -64,7 +64,7 @@ public partial class HangMan
     }
     public bool CheckFullWordSolved(string fullWord)
     {
-        if (string.Equals(fullWord,this.RandomWord,StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(fullWord,this._randomWord,StringComparison.OrdinalIgnoreCase))
         {
             return true;
         }
@@ -77,7 +77,7 @@ public partial class HangMan
         if (RemainingGuesses == 0)
         {
             Console.WriteLine("You lost the game :( ");
-            Console.WriteLine("The word was: "+ this.RandomWord);
+            Console.WriteLine("The word was: "+ this._randomWord);
             return "lost";
         }
 
@@ -96,21 +96,21 @@ public partial class HangMan
 
     public List<int> GetAllOccurencesInTargetWod(char lastInputChar)
     {
-        List<int> CharAllOccurrences=new ();
-        RandomWord=RandomWord.ToLower();
-        for (int i = 0;i<RandomWord.Length;i++)
+        List<int> charAllOccurrences=new ();
+        _randomWord=_randomWord.ToLower();
+        for (int i = 0;i<_randomWord.Length;i++)
         {
-            if (RandomWord[i]==lastInputChar)
+            if (_randomWord[i]==lastInputChar)
             {
-                CharAllOccurrences.Add(i);
+                charAllOccurrences.Add(i);
             }
         }
-        return CharAllOccurrences;
+        return charAllOccurrences;
     }
 
     public bool IsCorrectGuess( )
     {
-        List<int> indexesOfCharInTargetWord = GetAllOccurencesInTargetWod(lastInputChar);
+        List<int> indexesOfCharInTargetWord = GetAllOccurencesInTargetWod(_lastInputChar);
 
         if (indexesOfCharInTargetWord.Count<= 0)
         {
@@ -125,14 +125,14 @@ public partial class HangMan
         {
             //right guess doesn't update the remaining guesses count.
             UpdateCountRemainingGuesses(false);
-            GuessedWordSoFar[elementIndex] = lastInputChar;
+            _guessedWordSoFar[elementIndex] = _lastInputChar;
             
         }
         return true;
     }
     public bool CheckPreviousInputs(char userChar)
     {
-        if (this.UserInputChars.Add(userChar))
+        if (this._userInputChars.Add(userChar))
         {
             return false;
         }
@@ -142,14 +142,14 @@ public partial class HangMan
     public void SetGuessChar(char inputGuessChar)
     {
         inputGuessChar = char.ToLower(inputGuessChar);
-        lastInputChar = inputGuessChar;
+        _lastInputChar = inputGuessChar;
     }
 
     
 
     private string FetchRandomWord()
     {
-        GuessedWordSoFar=new StringBuilder();
+        _guessedWordSoFar=new StringBuilder();
         Thread.Sleep(1000);
         string[] secretWords = {
             "computer",
@@ -164,7 +164,7 @@ public partial class HangMan
             "developer"
         };
         string targetWord = secretWords[new Random().Next(secretWords.Length)];
-        this.GuessedWordSoFar.Append(new string('-',targetWord.Length));
+        this._guessedWordSoFar.Append(new string('-',targetWord.Length));
         
         
         return targetWord;

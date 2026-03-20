@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JsNGDEo68LE=",
+  "dgSpecHash": "rDLOBQ6suJc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\tony_\\OneDrive - BTH Student\\lexicon .NET\\AllWorkshops\\code\\Workshops\\testWeek11\\testWeek11.csproj",
+  "projectFilePath": "C:\\Users\\tony_\\OneDrive - BTH Student\\lexicon .NET\\AllWorkshops\\code\\HangMan\\testWeek11\\testWeek11.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tony_\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\tony_\\.nuget\\packages\\microsoft.applicationinsights\\2.22.0\\microsoft.applicationinsights.2.22.0.nupkg.sha512",

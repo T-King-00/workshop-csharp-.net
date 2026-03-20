@@ -6,11 +6,11 @@ using NUnit.Framework;
 
 public class Tests
 {
-    private HangMan Game;
+    private HangMan _game;
     [SetUp]
     public void Setup()
     {
-         Game = HangMan.CreateWithWordGiven("Development",3);
+         _game = HangMan.CreateWithWordGiven("Development",3);
     }
 
     // this test should test 2 functions , giving wrong char (guess) and the update remainin guesses counter.
@@ -22,10 +22,10 @@ public class Tests
         int? remainingGuessesCount =null;
         bool guessedBefore=false;
         //act
-        Game.SetGuessChar(testChar);
-        guessedBefore = Game.CheckPreviousInputs(testChar);
-        Game.IsCorrectGuess();
-        remainingGuessesCount = Game.RemainingGuesses;
+        _game.SetGuessChar(testChar);
+        guessedBefore = _game.CheckPreviousInputs(testChar);
+        _game.IsCorrectGuess();
+        remainingGuessesCount = _game.RemainingGuesses;
         //Assert
         Assert.That(remainingGuessesCount,Is.EqualTo(2));
         Assert.That(guessedBefore,Is.False);
@@ -41,19 +41,19 @@ public class Tests
         bool guessedBefore=false;
         
         //act 1
-        Game.SetGuessChar(testChar);
-        guessedBefore = Game.CheckPreviousInputs(testChar);
-        Game.IsCorrectGuess();
-        remainingGuessesCount = Game.RemainingGuesses;
+        _game.SetGuessChar(testChar);
+        guessedBefore = _game.CheckPreviousInputs(testChar);
+        _game.IsCorrectGuess();
+        remainingGuessesCount = _game.RemainingGuesses;
         
         //arrange 2
         testChar = 'z';
         //act2
         
-        Game.SetGuessChar(testChar);
-        guessedBefore = Game.CheckPreviousInputs(testChar);
-        Game.IsCorrectGuess();
-        remainingGuessesCount = Game.RemainingGuesses;
+        _game.SetGuessChar(testChar);
+        guessedBefore = _game.CheckPreviousInputs(testChar);
+        _game.IsCorrectGuess();
+        remainingGuessesCount = _game.RemainingGuesses;
 
         
         //Assert

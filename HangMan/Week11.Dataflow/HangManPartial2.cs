@@ -49,8 +49,8 @@ public partial class HangMan
         {
             string inputNewGuessFullWord=GetUserInputAsFullWord();
             //check if the user entered the right word or not
-            GuessedWordSoFar = new StringBuilder();
-            GuessedWordSoFar.Append(inputNewGuessFullWord);
+            _guessedWordSoFar = new StringBuilder();
+            _guessedWordSoFar.Append(inputNewGuessFullWord);
             bool isRightGuess=CheckSolved();
             if (!isRightGuess)
             {
@@ -74,8 +74,8 @@ public partial class HangMan
             }
             else
             {    //right guess or wrong guess
-                bool CorrectGuess = IsCorrectGuess();
-                CprintCheckGuessMessages(CorrectGuess);
+                bool correctGuess = IsCorrectGuess();
+                CprintCheckGuessMessages(correctGuess);
             }
             
         }
@@ -86,7 +86,7 @@ public partial class HangMan
     {
         if (isRightGuess)
         {
-            Console.WriteLine("\nCorrect guess. "+GuessedWordSoFar );
+            Console.WriteLine("\nCorrect guess. "+_guessedWordSoFar );
         }
         else
         {
@@ -116,7 +116,7 @@ public partial class HangMan
                     break;
                 case 2:
                     Console.WriteLine("\nYou chose to guess single letter");
-                    Console.WriteLine("Previously used letters are :" + string.Join(",",UserInputChars) );
+                    Console.WriteLine("Previously used letters are :" + string.Join(",",_userInputChars) );
                     return 's';
                     break;
                 default:
@@ -142,13 +142,13 @@ public partial class HangMan
         if (!solved && RemainingGuesses==0)
         {
             Console.WriteLine("You lost the game :( ");
-            Console.WriteLine("The word was: "+ this.RandomWord);
+            Console.WriteLine("The word was: "+ this._randomWord);
         }
 
         if (!solved && LooseFlag == true)
         {
             Console.WriteLine("You lost the game :( ");
-            Console.WriteLine("The word was: "+ this.RandomWord);
+            Console.WriteLine("The word was: "+ this._randomWord);
         }
         else if (solved )
         {
