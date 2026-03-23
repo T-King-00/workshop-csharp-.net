@@ -16,7 +16,12 @@ Through this project, I gained hands-on experience with:
 -  I worked with different data structures and learned how to choose the most appropriate ones depending on the problem.    
     1. Used hash-based structures (e.g. sets/maps) for efficient lookups of guessed letters . 
     2. Used StringBuilder (or equivalent) for efficient string manipulation instead of creating unnecessary new strings.  
--  I attempted to write unit tests for the most critical parts of the code, which helped me better understand the logic and verify correctness during development.
+-  I attempted to use test driven development approach write unit tests alongside the implementation to validate core logic for the most critical parts of the code, which helped me better understand the logic and verify correctness during development.
+-  Applying the principle of Separation of Concerns by isolating:  
+    1.  Game logic (state, rules, validation)
+    2.  Console output (printing messages to the user)
+This resulted in cleaner code and made the core logic easier to test without being tightly coupled to input/output handling.
+-Usage of Named Factory Method design pattern to better understand how object creation can be structured in a more flexible and maintainable way.
 
 ## Second Workshop - Calculator Application - Week13: [Calculator Repo](https://github.com/T-King-00/workshop-csharp-.net/tree/master/Calculator).   
 ### Features:
