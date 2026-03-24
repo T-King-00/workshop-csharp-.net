@@ -615,6 +615,16 @@
           "build/netcoreapp3.1/NUnit3TestAdapter.props": {},
           "build/netcoreapp3.1/NUnit3TestAdapter.targets": {}
         }
+      },
+      "CalculatorProject/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/CalculatorProject.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CalculatorProject.dll": {}
+        }
       }
     }
   },
@@ -1504,10 +1514,16 @@
         "nunit3testadapter.nuspec",
         "nunit_256.png"
       ]
+    },
+    "CalculatorProject/1.0.0": {
+      "type": "project",
+      "path": "../CalculatorProject/CalculatorProject.csproj",
+      "msbuildProject": "../CalculatorProject/CalculatorProject.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "CalculatorProject >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.14.0",
       "NUnit >= 4.3.2",
       "NUnit.Analyzers >= 4.7.0",
@@ -1546,7 +1562,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\tony_\\OneDrive - BTH Student\\lexicon .NET\\AllWorkshops\\code\\Calculator\\CalculatorProject\\CalculatorProject.csproj": {
+              "projectPath": "C:\\Users\\tony_\\OneDrive - BTH Student\\lexicon .NET\\AllWorkshops\\code\\Calculator\\CalculatorProject\\CalculatorProject.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

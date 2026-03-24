@@ -156,3 +156,10 @@ C:\Users\tony_\OneDrive - BTH Student\lexicon .NET\AllWorkshops\code\Calculator\
 C:\Users\tony_\OneDrive - BTH Student\lexicon .NET\AllWorkshops\code\Calculator\TestProject\obj\Debug\net10.0\TestProject.pdb
 C:\Users\tony_\OneDrive - BTH Student\lexicon .NET\AllWorkshops\code\Calculator\TestProject\obj\Debug\net10.0\TestProject.genruntimeconfig.cache
 C:\Users\tony_\OneDrive - BTH Student\lexicon .NET\AllWorkshops\code\Calculator\TestProject\obj\Debug\net10.0\ref\TestProject.dll
+C:\Users\tony_\OneDrive - BTH Student\lexicon .NET\AllWorkshops\code\Calculator\TestProject\bin\Debug\net10.0\.msCoverageSourceRootsMapping_TestProject
+C:\Users\tony_\OneDrive - BTH Student\lexicon .NET\AllWorkshops\code\Calculator\TestProject\bin\Debug\net10.0\CoverletSourceRootsMapping_TestProject
+C:\Users\tony_\OneDrive - BTH Student\lexicon .NET\AllWorkshops\code\Calculator\TestProject\bin\Debug\net10.0\CalculatorProject.deps.json
+C:\Users\tony_\OneDrive - BTH Student\lexicon .NET\AllWorkshops\code\Calculator\TestProject\bin\Debug\net10.0\CalculatorProject.runtimeconfig.json
+C:\Users\tony_\OneDrive - BTH Student\lexicon .NET\AllWorkshops\code\Calculator\TestProject\bin\Debug\net10.0\CalculatorProject.exe
+C:\Users\tony_\OneDrive - BTH Student\lexicon .NET\AllWorkshops\code\Calculator\TestProject\bin\Debug\net10.0\CalculatorProject.dll
+C:\Users\tony_\OneDrive - BTH Student\lexicon .NET\AllWorkshops\code\Calculator\TestProject\bin\Debug\net10.0\CalculatorProject.pdb
