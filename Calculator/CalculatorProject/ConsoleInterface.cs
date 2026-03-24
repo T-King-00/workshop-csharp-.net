@@ -2,12 +2,12 @@
 
 public class ConsoleInterface
 {
-    private Calculator calc;
+    private CalculatorOperations calc;
     private float num1, num2;
     public ConsoleInterface()
     {
         Console.WriteLine("\t Calculator Application");
-        calc = new Calculator();
+        calc = new CalculatorOperations();
     }
     
     //application entry point
