@@ -1,4 +1,4 @@
-# 🧮 Workshop 1: HangMan 
+#  Workshop 1: HangMan 
 This project is an implementation of the classic Hangman game, developed as part of a programming workshop in my course.  
 ### Features:  
   1.🎲 Random word selection from a predefined list  
