@@ -1,4 +1,5 @@
-## Second Workshop - Calculator Application - Week13: [Calculator Repo](https://github.com/T-King-00/workshop-csharp-.net/tree/master/Calculator).   
+## Workshop 2 - Calculator Application - Week13: [Calculator Repo](https://github.com/T-King-00/workshop-csharp-.net/tree/master/Calculator).   
+
 
 This project is a simple calculator application built as part of a C# and .NET workshop.  
 Its purpose is to demonstrate core programming concepts such as basic arithmetic operations, project structure, and clean code practices in a minimal and focused way.
