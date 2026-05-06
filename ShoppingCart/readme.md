@@ -25,6 +25,8 @@ Through this project, I gained hands-on experience with:
 - Controller action return types  
 - HTTP response status codes
 - Dependecy injection 
+- Repository design pattern to separate data access logic from business logic
+- Async programming with `async`/`await` in controllers and repository database calls
 
 
 

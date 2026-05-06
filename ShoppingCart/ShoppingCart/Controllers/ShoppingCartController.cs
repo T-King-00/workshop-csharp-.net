@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShoppingCart.Db;
 using ShoppingCart.Models;
+using ShoppingCart.Repo;
 
 namespace ShoppingCart.Controllers;
 
@@ -10,18 +12,19 @@ namespace ShoppingCart.Controllers;
 [Route("/[controller]")]
 public class CartController (ShoppingCartDb db) :ControllerBase 
 {
+    CartRepo _cartRepo=new(db);
     
-    [HttpPost]
-    public IActionResult InitiateEmptyCart(  [FromBody] Guid userId)
+    [HttpPost("/newCart")]
+    public async Task<IActionResult> InitiateEmptyCart(  [FromBody] Guid userId)
     {
         
         Cart newCart = new();
         newCart.DateCreated=DateTime.Now;
         newCart.UserId=userId;
         
+        
         //add cart to db
-        db.Carts.Add(newCart);
-        db.SaveChanges();
+       await _cartRepo.AddNewCart(newCart);
         
         return CreatedAtAction(
             nameof(GetUserCart), //needs id for route uri 
@@ -31,66 +34,35 @@ public class CartController (ShoppingCartDb db) :ControllerBase
     }
     
     [HttpGet("/{cartId}")]
-    public IActionResult GetUserCart([FromRoute]Guid cartId)
+    public async Task<IActionResult> GetUserCart([FromRoute]Guid cartId)
     {
-        //instead of hitting db twice
-        /* if (!db.Carts.Any(c=>c.Id==cartId))
-         {
+     
+        var cart =  await _cartRepo.GetCart(cartId);
+        if (cart is null)
             return NotFound();
-         }
-         var cart = db.Carts.First(c=>c.Id==cartId);*/
-           
-        //we can use, one hit to db
-        var cart=db.Carts.Where(c=>c.Id==cartId).
-            Include(c=>c.Items)!.
-            ThenInclude(c=>c.Product).FirstOrDefault();
-        
-        if (cart==null)
-            return NotFound();
-        
-        
         
         return Ok(cart);
     }
 
     
     [HttpPut("/{cartId}")]
-    public IActionResult UpdateCart([FromRoute] Guid cartId, [FromBody] List<CartItem> updatedItems)
+    public async Task<IActionResult> UpdateCart([FromRoute] Guid cartId, [FromBody] List<CartItem> updatedItems)
     {
-        
-        
-        Cart cart=db.Carts.Where(c=>c.Id==cartId).Include(c=>c.Items)
-            .ThenInclude(p=>p.Product).FirstOrDefault();
+        Cart? cart =await _cartRepo.UpdateCart(updatedItems,cartId) ;
         if (cart is null)
         {
-           return NotFound();
+            return  NotFound();
         }
-
-        db.CartItems.RemoveRange(cart.Items);
-        cart.Items =updatedItems ;
-        db.CartItems.AddRange(cart.Items);
         
-        db.SaveChanges();
-        
-        return Ok(cart);
+        return Ok();
     }   
     
     [HttpDelete("/{cartId}")]
-    public IActionResult DeleteCart([FromRoute] Guid cartId)
+    public async Task<IActionResult> DeleteCart([FromRoute] Guid cartId)
     {
         Console.WriteLine("DeleteCart called : cartid = "+cartId+"");
-     
-        var result=db.Carts.Where(c=>c.Id==cartId).
-            Include(i=>i.Items)!.
-            ThenInclude(p=>p.Product).
-            FirstOrDefault();
-        if (result is null)
-        {
-            return NotFound();
-        }
+        await _cartRepo.DeleteCart(cartId);
         
-        db.Carts.Remove(result);
-        db.SaveChanges();
         return NoContent();
 
         
