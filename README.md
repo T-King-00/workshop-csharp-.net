@@ -12,3 +12,5 @@ The purpose of this repository is to document my learning process and showcase p
 ## First Workshop -Hangman Game - week11-12:  [HangMan Game](https://github.com/T-King-00/workshop-csharp-.net/tree/master/HangMan).  
 
 ## Second Workshop - Calculator Application - Week13: [Calculator Repo](https://github.com/T-King-00/workshop-csharp-.net/tree/master/Calculator).   
+
+## Third Workshop - ShoppingCart API : [ShoppingCart API Repo](https://github.com/T-King-00/workshop-csharp-.net/tree/master/ShoppingCart).
