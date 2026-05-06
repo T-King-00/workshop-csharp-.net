@@ -11,7 +11,7 @@ using ShoppingCart.Db;
 namespace ShoppingCart.Migrations
 {
     [DbContext(typeof(ShoppingCartDb))]
-    [Migration("20260504121301_v1")]
+    [Migration("20260504124934_v1")]
     partial class v1
     {
         /// <inheritdoc />

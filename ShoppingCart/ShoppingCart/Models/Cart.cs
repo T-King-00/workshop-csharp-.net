@@ -1,19 +1,45 @@
-﻿namespace ShoppingCart.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ShoppingCart.Models;
 
 public class Cart
 {
-    public Guid Id { get; }=Guid.NewGuid();
+    [Key]
+    public Guid Id { get; set; }
     public DateTime DateCreated { get; set; }
     public List<CartItem>? Items { get; set; }
+    
+    //ref property
     public Guid UserId { get; set; }
+
+    public Cart()
+    {
+        Id=Guid.NewGuid();
+        DateCreated=DateTime.Now;
+    }
+
+   
 }
 
 public class CartItem
 {
+    [Key]
+    public Guid Id { get; set; }
     public int Quantity { get; set; }
     
-    //ref property
+    //ref property : ForeignKey property
     public Product? Product { get; set; }
-    public Guid UserId { get; set; }
+    public Guid ProductId { get; set; }
+
+    //ForeignKey property
+    public Cart? Cart { get; set; }
+    public Guid CartId { get; set; }
+
+
+
+    public CartItem()
+    {
+        Id=Guid.NewGuid();
+    }
     
 }

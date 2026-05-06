@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingCart.Db;
 
@@ -10,9 +11,11 @@ using ShoppingCart.Db;
 namespace ShoppingCart.Migrations
 {
     [DbContext(typeof(ShoppingCartDb))]
-    partial class ShoppingCartDbModelSnapshot : ModelSnapshot
+    [Migration("20260505072139_v3")]
+    partial class v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.7");
@@ -111,23 +114,6 @@ namespace ShoppingCart.Migrations
                             Id = new Guid("f34747f7-3d6d-4484-8c58-55e8ac69f7ab"),
                             Name = "Product6",
                             Price = 600m
-                        });
-                });
-
-            modelBuilder.Entity("ShoppingCart.Models.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("afefe389-a237-40cb-a7d9-888cd52bbffa")
                         });
                 });
 

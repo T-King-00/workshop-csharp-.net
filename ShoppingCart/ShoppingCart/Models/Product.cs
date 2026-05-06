@@ -6,7 +6,7 @@ namespace ShoppingCart.Models;
 public class Product
 {
     [Key]
-    public Guid Id { get; set; }=Guid.NewGuid();
+    public Guid Id { get; set; }
     
     public string Name { get ; set; }
     public decimal Price { get ; set; }
@@ -16,7 +16,7 @@ public class Product
     {
         
     }
-    public Product(string name, decimal price)
+    public Product(string name, decimal price,Guid guid=new Guid())
     {
         if (string.IsNullOrEmpty(name))
         {
@@ -28,6 +28,7 @@ public class Product
         }
         Name=name;
         Price=price;
+        Id=guid;
     }
 
     

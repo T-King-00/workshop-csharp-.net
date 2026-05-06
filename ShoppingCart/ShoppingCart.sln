@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{7938FBB6-B8FE-4020-967A-6F1D4206C91C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7938FBB6-B8FE-4020-967A-6F1D4206C91C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7938FBB6-B8FE-4020-967A-6F1D4206C91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7938FBB6-B8FE-4020-967A-6F1D4206C91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7938FBB6-B8FE-4020-967A-6F1D4206C91C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
